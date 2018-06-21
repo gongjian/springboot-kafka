@@ -13,9 +13,9 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.AbstractMessageListenerContainer;
 import org.springframework.kafka.listener.ErrorHandler;
-import org.springframework.kafka.support.converter.BatchMessagingMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.retry.support.RetryTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class KafkaConfig {
         configProps.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "kafka-group1");
+        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, properties.getConsumer().getGroupId());
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
 
@@ -63,6 +63,8 @@ public class KafkaConfig {
         factory.getContainerProperties().setAckOnError(false);
         factory.getContainerProperties().setAckMode(AbstractMessageListenerContainer.AckMode.MANUAL);
         factory.getContainerProperties().setErrorHandler(new SeekToCurrentErrorHandler());
+
+        factory.setRetryTemplate(new RetryTemplate());
 
         return factory;
     }

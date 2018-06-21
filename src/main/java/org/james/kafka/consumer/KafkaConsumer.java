@@ -26,7 +26,7 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = {"${kafka.topic.t4}"})
     public void listenT4(Message msg, Acknowledgment acknowledgment) {
-        msg = null;
+        //msg = null;
         logger.info("data : {}", msg.getData());
         acknowledgment.acknowledge();
     }
