@@ -15,7 +15,7 @@ public class LimitAspect {
     private static Logger logger = LoggerFactory.getLogger(LimitAspect.class);
 
     // 每秒10个令牌
-    private static RateLimiter rateLimiter = RateLimiter.create(2.0);
+    private static RateLimiter rateLimiter = RateLimiter.create(10.0);
 
     @Pointcut("@annotation(org.james.kafka.ratelimiter.ServiceLimit)")
     public void ServiceAspect() {
