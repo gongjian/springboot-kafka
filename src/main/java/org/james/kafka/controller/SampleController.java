@@ -1,7 +1,7 @@
 package org.james.kafka.controller;
 
+import org.james.kafka.annotation.ServiceLimit;
 import org.james.kafka.entity.Message;
-import org.james.kafka.ratelimiter.ServiceLimit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

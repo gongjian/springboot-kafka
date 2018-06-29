@@ -1,4 +1,4 @@
-package org.james.kafka.ratelimiter;
+package org.james.kafka.annotation;
 
 import java.lang.annotation.*;
 

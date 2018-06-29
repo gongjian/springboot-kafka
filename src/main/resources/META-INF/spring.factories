@@ -1,0 +1,1 @@
+org.james.kafka.service.MyService=org.james.kafka.service.impl.MyServiceImpl

@@ -17,7 +17,8 @@ public class LimitAspect {
     // 每秒10个令牌
     private static RateLimiter rateLimiter = RateLimiter.create(10.0);
 
-    @Pointcut("@annotation(org.james.kafka.ratelimiter.ServiceLimit)")
+    @Pointcut("@annotation(org.james.kafka.annotation.ServiceLimit)")
+    //@Pointcut("execution(* org.james.kafka.controller.*.*(..))")
     public void ServiceAspect() {
     }
 
