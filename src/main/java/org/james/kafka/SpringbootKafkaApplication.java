@@ -1,5 +1,6 @@
 package org.james.kafka;
 
+import org.james.kafka.entity.CustomBean;
 import org.james.kafka.entity.KafkaProperties;
 import org.james.kafka.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 
 import java.util.List;
@@ -22,6 +24,11 @@ public class SpringbootKafkaApplication implements CommandLineRunner, Applicatio
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootKafkaApplication.class, args);
+    }
+
+    @Bean
+    public CustomBean customBean() {
+        return new CustomBean();
     }
 
     @Override
